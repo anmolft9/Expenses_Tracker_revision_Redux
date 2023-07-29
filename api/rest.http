@@ -1,0 +1,50 @@
+### api test
+GET http://localhost:8000
+
+
+###user login
+POST http://localhost:8000/api/v1/user/login
+Content-Type: application/json
+
+{
+  
+  "email": "asd@gmail.com",
+  "password": "asd"
+  
+}
+
+### post new user
+POST http://localhost:8000/api/v1/user
+Content-Type: application/json
+
+{
+  "firstName": "anmol",
+  "lastName": "bhattarai",
+  "email": "anm@anm",
+  "password": "asd"
+  
+}
+
+
+
+### post new transaction
+POST http://localhost:8000/api/v1/transaction
+Content-Type: application/json
+
+{
+  "userId": "64ac0e2453175396add02890",
+  "transactionType": "income",
+  "title": "Pay",
+  "amounts":1000
+ 
+}
+
+
+###get all the transaction based on their id
+GET http://localhost:8000/api/v1/transaction
+Authorization: 64ac0e2453175396add02890
+
+
+###delete a transaction
+DELETE http://localhost:8000/api/v1/transaction/64b7da786d191cd589aa1b57
+Authorization: 64ac0e2453175396add02890

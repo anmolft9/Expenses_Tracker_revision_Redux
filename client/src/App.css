@@ -1,0 +1,12 @@
+.App {
+  background-color: rgb(246, 228, 209);
+  min-height: 100vh;
+}
+
+.loginForm {
+  width: 27rem;
+}
+
+.RegisterForm {
+  width: 27rem;
+}
