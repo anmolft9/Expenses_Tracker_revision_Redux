@@ -7,8 +7,8 @@ const transactionSlice = createSlice({
   name: "transactions",
   initialState,
   reducers: {
-    setTransactions: (state, { payload }) => {
-      state.transactions = payload;
+    setTransactions: (state, { action }) => {
+      state.transactions = action;
     },
   },
 });
