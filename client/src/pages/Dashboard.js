@@ -15,12 +15,7 @@ import { useDispatch } from "react-redux";
 import { fetchDataAction } from "./transaction/transactionAction";
 
 export const Dashboard = ({ isLoggedIn }) => {
-  const dispatch = useDispatch();
   const [transactions, setTransactions] = useState([]);
-
-  useEffect(() => {
-    dispatch(fetchDataAction());
-  }, []);
 
   const postData = async (transaction) => {
     const user = JSON.parse(sessionStorage.getItem("user"));
@@ -41,7 +36,7 @@ export const Dashboard = ({ isLoggedIn }) => {
     }
 
     const { status, message } = await deleteTransaction(_id);
-    status === "success" && fetchData();
+    // status === "success" && fetchData();
     toast[status](message);
   };
 

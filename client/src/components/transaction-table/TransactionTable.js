@@ -1,7 +1,16 @@
+import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchDataAction } from "../../pages/transaction/transactionAction";
 
-export const TransactionTable = ({ transactions, handleOnDelete }) => {
+export const TransactionTable = ({ handleOnDelete }) => {
+  const dispatch = useDispatch();
+  const { transactions } = useSelector((state) => state.transactions);
+  useEffect(() => {
+    dispatch(fetchDataAction());
+  }, []);
+
   const total = transactions.reduce((acc, { transactionType, amounts }) => {
     return transactionType === "Income" ? acc + amounts : acc - amounts;
   }, 0);
