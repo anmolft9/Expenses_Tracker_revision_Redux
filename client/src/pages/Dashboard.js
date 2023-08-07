@@ -11,18 +11,16 @@ import {
   postNewTransaction,
 } from "../helpers/axiosHelper.js";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { fetchDataAction } from "./transaction/transactionAction";
 
 export const Dashboard = ({ isLoggedIn }) => {
+  const dispatch = useDispatch();
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
-    fetchData();
+    dispatch(fetchDataAction());
   }, []);
-
-  const fetchData = async () => {
-    const { status, message, trans } = await getTransaction();
-    status === "success" && trans.length && setTransactions(trans);
-  };
 
   const postData = async (transaction) => {
     const user = JSON.parse(sessionStorage.getItem("user"));
@@ -33,7 +31,7 @@ export const Dashboard = ({ isLoggedIn }) => {
       userId,
     });
     toast[status](message);
-    status === "success" && fetchData();
+    // status === "success" && fetchData();
   };
   // console.log(transactions);
 
