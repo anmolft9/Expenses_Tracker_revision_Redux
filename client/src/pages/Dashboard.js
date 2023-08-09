@@ -5,31 +5,10 @@ import { MainLayout } from "../components/layout/MainLayout";
 import { Row, Toast } from "react-bootstrap";
 import { TransactionForm } from "../components/form/TransactionForm";
 import { TransactionTable } from "../components/transaction-table/TransactionTable";
-import {
-  deleteTransaction,
-  getTransaction,
-  postNewTransaction,
-} from "../helpers/axiosHelper.js";
+import { deleteTransaction } from "../helpers/axiosHelper.js";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import { fetchDataAction } from "./transaction/transactionAction";
 
 export const Dashboard = ({ isLoggedIn }) => {
-  const [transactions, setTransactions] = useState([]);
-
-  const postData = async (transaction) => {
-    const user = JSON.parse(sessionStorage.getItem("user"));
-
-    const userId = user._id;
-    const { status, message } = await postNewTransaction({
-      ...transaction,
-      userId,
-    });
-    toast[status](message);
-    // status === "success" && fetchData();
-  };
-  // console.log(transactions);
-
   const handleOnDelete = async (_id) => {
     if (!window.confirm("Are you sure you want to delete this transaction")) {
       return;
@@ -49,14 +28,11 @@ export const Dashboard = ({ isLoggedIn }) => {
           <hr />
 
           {/* form section */}
-          <TransactionForm postData={postData} />
+          <TransactionForm />
           <hr className="mt-5" />
 
           {/* table section */}
-          <TransactionTable
-            transactions={transactions}
-            handleOnDelete={handleOnDelete}
-          />
+          <TransactionTable handleOnDelete={handleOnDelete} />
         </Row>
       </MainLayout>
     </div>

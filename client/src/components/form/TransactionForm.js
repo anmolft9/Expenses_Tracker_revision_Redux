@@ -5,18 +5,22 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 // import { postNewTransaction } from "/Users/anmolbhattarai/Desktop/Projects/Dented Bootcamp/Revision/Revision-back/Expense-Tracker/client/src/helpers/axiosHelper.js";
 import { toast } from "react-toastify";
+import { postDataAction } from "../../pages/transaction/transactionAction";
+import { useDispatch } from "react-redux";
 
-export const TransactionForm = ({ postData }) => {
-  const [transaction, setTransaction] = useState({});
+export const TransactionForm = () => {
+  const dispatch = useDispatch();
+
+  const [form, setForm] = useState({});
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 
-    setTransaction({ ...transaction, [name]: value });
+    setForm({ ...form, [name]: value });
   };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    postData(transaction);
+    dispatch(postDataAction(form));
   };
 
   return (

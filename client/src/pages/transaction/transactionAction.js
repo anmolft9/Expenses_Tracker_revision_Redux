@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { getTransaction, postNewTransaction } from "../../helpers/axiosHelper";
 import { setTransactions } from "./transactionSlice";
 
@@ -6,14 +7,14 @@ export const fetchDataAction = () => async (dispatch) => {
   status === "success" && trans.length && dispatch(setTransactions(trans));
 };
 
-const postDataAction = () => async (dispatch) => {
+export const postDataAction = (form) => async (dispatch) => {
   const user = JSON.parse(sessionStorage.getItem("user"));
 
   const userId = user._id;
   const { status, message } = await postNewTransaction({
-    ...transaction,
+    ...form,
     userId,
   });
-
-  // status === "success" && fetchData();
+  toast[status](message);
+  status === "success" && dispatch(fetchDataAction());
 };
