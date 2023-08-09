@@ -2,9 +2,12 @@ import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataAction } from "../../pages/transaction/transactionAction";
+import {
+  fetchDataAction,
+  handleOnDeleteAction,
+} from "../../pages/transaction/transactionAction";
 
-export const TransactionTable = ({ handleOnDelete }) => {
+export const TransactionTable = () => {
   const dispatch = useDispatch();
   const { transactions } = useSelector((state) => state.transactions);
   useEffect(() => {
@@ -41,7 +44,7 @@ export const TransactionTable = ({ handleOnDelete }) => {
                 <td>
                   <Button
                     variant="danger"
-                    onClick={() => handleOnDelete(item._id)}
+                    onClick={() => dispatch(handleOnDeleteAction(item._id))}
                   >
                     Delete
                   </Button>
