@@ -3,8 +3,8 @@ import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import { MainLayout } from "../components/layout/MainLayout";
 import { useRef } from "react";
-import { loginUser } from "../helpers/axiosHelper";
-import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { loginAction } from "./user/userAction";
 
 export const Login = ({ setLoggedIn }) => {
   const emailRef = useRef();
@@ -12,20 +12,24 @@ export const Login = ({ setLoggedIn }) => {
 
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-  //   const { status, message, user } = await loginUser({ email, password });
+    dispatch(loginAction({ email, password }));
 
-  //   toast[status](message);
-  //   if (status === "success") {
-  //     window.sessionStorage.setItem("user", JSON.stringify(user));
-  //     setLoggedIn(true);
-  //     navigate("/dashboard");
-  //   }
-  // };
+    // const { status, message, user } = await loginUser({ email, password });
+
+    // toast[status](message);
+    // if (status === "success") {
+    //   window.sessionStorage.setItem("user", JSON.stringify(user));
+    //   setLoggedIn(true);
+    //   navigate("/dashboard");
+    // }
+  };
 
   return (
     <MainLayout>
