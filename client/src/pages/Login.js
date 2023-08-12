@@ -17,15 +17,15 @@ export const Login = ({ setLoggedIn }) => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    const { status, message, user } = await loginUser({ email, password });
+  //   const { status, message, user } = await loginUser({ email, password });
 
-    toast[status](message);
-    if (status === "success") {
-      window.sessionStorage.setItem("user", JSON.stringify(user));
-      setLoggedIn(true);
-      navigate("/dashboard");
-    }
-  };
+  //   toast[status](message);
+  //   if (status === "success") {
+  //     window.sessionStorage.setItem("user", JSON.stringify(user));
+  //     setLoggedIn(true);
+  //     navigate("/dashboard");
+  //   }
+  // };
 
   return (
     <MainLayout>
