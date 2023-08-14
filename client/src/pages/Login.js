@@ -6,11 +6,11 @@ import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { loginAction } from "./user/userAction";
 
-export const Login = ({ setLoggedIn }) => {
+export const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
