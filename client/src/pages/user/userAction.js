@@ -1,5 +1,6 @@
 import { loginUser } from "../../helpers/axiosHelper";
 import { toast } from "react-toastify";
+import { setUser } from "./userSlice";
 
 export const loginAction = (obj) => async (dispatch) => {
   ///first call axios amd get data from the server
@@ -8,5 +9,6 @@ export const loginAction = (obj) => async (dispatch) => {
   toast[status](message);
   if (status === "success") {
     window.sessionStorage.setItem("user", JSON.stringify(user));
+    dispatch(setUser(user));
   }
 };
