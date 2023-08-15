@@ -1,13 +1,19 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-export const Header = ({ isLoggedIn }) => {
+import { Link, useNavigate } from "react-router-dom";
+import { userLogoutAction } from "../../pages/user/userAction";
+
+export const Header = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.user);
+
   const handleOnLogOut = () => {
-    sessionStorage.removeItem("user");
+    // sessionStorage.removeItem("user");
+    dispatch(userLogoutAction());
     navigate("/");
   };
   return (
@@ -17,7 +23,7 @@ export const Header = ({ isLoggedIn }) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            {isLoggedIn ? (
+            {user._id ? (
               <Nav.Link onClick={handleOnLogOut}>Logout</Nav.Link>
             ) : (
               <>

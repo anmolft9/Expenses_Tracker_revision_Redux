@@ -1,5 +1,5 @@
 import "./App.css";
-import { Button, Container } from "react-bootstrap";
+
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Dashboard } from "./pages/Dashboard";
@@ -10,19 +10,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState(false);
-
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login setLoggedIn={setLoggedIn} />} />
-          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route
-            path="/dashboard"
-            element={<Dashboard isLoggedIn={isLoggedIn} />}
-          />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

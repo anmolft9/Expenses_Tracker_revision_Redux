@@ -2,11 +2,10 @@ import React from "react";
 import { Header } from "./Header";
 import { Container } from "react-bootstrap";
 
-export const MainLayout = ({ children, isLoggedIn }) => {
-  console.log(isLoggedIn);
+export const MainLayout = ({ children }) => {
   return (
     <div>
-      <Header isLoggedIn={isLoggedIn} />
+      <Header />
       <Container>{children}</Container>
     </div>
   );
