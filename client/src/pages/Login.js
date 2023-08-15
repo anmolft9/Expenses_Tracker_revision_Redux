@@ -2,17 +2,22 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import { MainLayout } from "../components/layout/MainLayout";
-import { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "./user/userAction";
 
 export const Login = () => {
+  const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    user._id && navigate("/dashboard");
+  }, [user]);
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -20,15 +25,6 @@ export const Login = () => {
     const password = passwordRef.current.value;
 
     dispatch(loginAction({ email, password }));
-
-    // const { status, message, user } = await loginUser({ email, password });
-
-    // toast[status](message);
-    // if (status === "success") {
-    //   window.sessionStorage.setItem("user", JSON.stringify(user));
-    //   setLoggedIn(true);
-    //   navigate("/dashboard");
-    // }
   };
 
   return (
