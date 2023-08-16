@@ -8,7 +8,7 @@ export const loginAction = (obj) => async (dispatch) => {
 
   toast[status](message);
   if (status === "success") {
-    // window.sessionStorage.setItem("user", JSON.stringify(user));
+    window.sessionStorage.setItem("user", JSON.stringify(user));
     dispatch(setUser(user));
   }
 };
@@ -16,4 +16,5 @@ export const loginAction = (obj) => async (dispatch) => {
 //logout redirection
 export const userLogoutAction = () => (dispatch) => {
   dispatch(setUser({}));
+  window.sessionStorage.removeItem("user");
 };
