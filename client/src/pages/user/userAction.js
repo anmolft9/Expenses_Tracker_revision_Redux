@@ -18,3 +18,9 @@ export const userLogoutAction = () => (dispatch) => {
   dispatch(setUser({}));
   window.sessionStorage.removeItem("user");
 };
+
+// //logout redirection
+// export const userLogoutAction = () => (dispatch) => {
+//   dispatch(setUser({}));
+//   window.sessionStorage.removeItem("user");
+// };
