@@ -32,7 +32,14 @@ export const loginUser = async (obj) => {
 
 export const postNewTransaction = async (obj) => {
   try {
-    const response = await axios.post(transactionEP, obj);
+    const user = JSON.parse(sessionStorage.getItem("user"));
+
+    const userId = user._id;
+    const response = await axios.post(transactionEP, obj, {
+      headers: {
+        authorization: userId,
+      },
+    });
     return response.data;
   } catch (error) {
     return {
