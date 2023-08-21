@@ -3,6 +3,8 @@ const rootUrl = "http://localhost:8000";
 const userEP = rootUrl + "/api/v1/user";
 const transactionEP = rootUrl + "/api/v1/transaction";
 
+//user APIs
+
 export const postNewUser = async (obj) => {
   try {
     const response = await axios.post(userEP, obj);
