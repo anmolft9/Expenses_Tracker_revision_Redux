@@ -5,6 +5,7 @@ const app = express();
 import cors from "cors";
 
 const PORT = 8000;
+import path from "path";
 
 //db connection
 import { connectDB } from "./src/config/dbConfig.js";
@@ -20,6 +21,9 @@ import transactionRouter from "./src/routers/transactionRouter.js";
 import { authMiddleware } from "./src/middlewares/authMiddleware.js";
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/transaction", authMiddleware, transactionRouter);
+
+//to know the root directory of the file
+const _dirname = path.resolve();
 
 ///root api point
 app.use("/", (req, res) => {
