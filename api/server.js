@@ -24,11 +24,14 @@ app.use("/api/v1/transaction", authMiddleware, transactionRouter);
 
 //to know the root directory of the file
 const _dirname = path.resolve();
+//tell express to use the path plus the /build file to load the frontend
+app.use(express.static(path.join(_dirname, "/build")));
 
 ///root api point
+//severside rendering
 app.use("/", (req, res) => {
   try {
-    res.send("<h3>coming soon</h3>");
+    res.sendFile(path.join(_dirname, "/build/index.html"));
   } catch (error) {
     next(error);
   }
