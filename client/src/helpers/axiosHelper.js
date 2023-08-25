@@ -1,5 +1,6 @@
 import axios from "axios";
-const rootUrl = "http://localhost:8000";
+const rootUrl =
+  process.env.Node_ENV === "production" ? "" : "http://localhost:8000"; //production then doesnot need the rootUrl but in development phase we need it>
 const userEP = rootUrl + "/api/v1/user";
 const transactionEP = rootUrl + "/api/v1/transaction";
 
