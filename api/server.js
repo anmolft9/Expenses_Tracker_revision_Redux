@@ -37,6 +37,7 @@ app.use("/", (req, res, next) => {
   }
 });
 
+//global error handling function
 app.use((error, req, res, next) => {
   const status = error.status || 404;
 

@@ -16,6 +16,7 @@ export const authMiddleware = async (req, res, next) => {
       }
     }
 
+    //if the status of the application is 403
     res.status(403).json({
       status: "error",
       message: "Forbidden /not Allowed",
