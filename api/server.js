@@ -47,6 +47,8 @@ app.use((error, req, res, next) => {
   });
 });
 
+//port connection of the server
+
 app.listen(PORT, (error) => {
   error && console.log(error);
   console.log(`connected server at http://localhost:${PORT}`);
