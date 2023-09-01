@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+//Database schema for the transaction
+
 const transactionSchema = new mongoose.Schema(
   {
     userId: {

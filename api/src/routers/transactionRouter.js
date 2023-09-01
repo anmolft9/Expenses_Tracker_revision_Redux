@@ -7,6 +7,7 @@ import {
 
 const router = express.Router();
 
+//add transaction route
 router.post("/", async (req, res, next) => {
   try {
     const result = await addTransaction(req.body);
@@ -24,6 +25,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+//get the specific transacton route
 router.get("/", async (req, res, next) => {
   try {
     const { authorization } = req.headers;
@@ -44,6 +46,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+//delete the specific transaction
 router.delete("/:_id", async (req, res, next) => {
   try {
     const { authorization } = req.headers;
